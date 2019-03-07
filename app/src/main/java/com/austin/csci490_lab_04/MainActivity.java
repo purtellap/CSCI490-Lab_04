@@ -7,6 +7,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -22,31 +23,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.i("String: ",returnString("https://www.google.com"));
+        TextView text = findViewById(R.id.textView);
 
-    }
+        AsinkTask ast = new AsinkTask(text);
 
-    private String returnString(String s){
 
-        String string = "";
-
-        try {
-            URL url = new URL(s);
-            URLConnection connection = url.openConnection();
-
-            InputStreamReader inputStreamReader = new InputStreamReader((connection.getInputStream()));
-
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-            if(bufferedReader.readLine() != null){
-                string += bufferedReader.readLine();
-            }
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return string;
     }
 
 }
